@@ -21,6 +21,14 @@ location = 90
 
 df_demand_prev_month = taxi_download_timeseries_month(year, month, location)
 
+# 2.1 SAVE PROCESS PREV MONTH'S DATA TO FEATURE STORE:
+
+data = df_demand_prev_month
+feat_group_name = f'nyc_taxi_demand_{year}_{month}'
+feat_group_ver = 1
+
+taxi_insert_data_into_feature_store(project, data, feat_group_name, feat_group_ver)
+
 
 
 # 3. DOWNLOAD PREDICTOR MODEL FROM MODEL REGISTRY:
@@ -55,7 +63,7 @@ y_pred = pd.DataFrame().assign(date_time = date_time_, demand = y_pred)
 
 data = y_pred
 year_, month_ = pd.to_datetime(start_).year, pd.to_datetime(start_).month
-feat_group_name = f'nyc_taxi_demand_prediction_{year_}_{month}'
+feat_group_name = f'nyc_taxi_demand_prediction_{year_}_{month_}'
 feat_group_ver = 1
 
 taxi_insert_data_into_feature_store(project, data, feat_group_name, feat_group_ver)
