@@ -1,0 +1,8 @@
+numpy
+pandas
+
+hopsworks
+xgboost
+scikit-learn
+python-dotenv
+pathlib
