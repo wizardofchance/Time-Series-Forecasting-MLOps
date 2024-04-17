@@ -16,7 +16,7 @@ project = taxi_connect_to_project()
 
 # 2. DOWNLOAD & PROCESS PREV MONTH'S DATA:
 
-year, month = 2023, 1
+year, month = 2023, 2
 location = 90
 
 df_demand_prev_month = taxi_download_timeseries_month(year, month, location)
