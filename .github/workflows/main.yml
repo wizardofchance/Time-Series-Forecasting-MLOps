@@ -1,0 +1,30 @@
+name: main_cycle
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+
+  execute_taxi_demand:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+          working-directory: ./taxi_working_directory/
+          
+      - name: install python packages
+        run: pip install -r requirements.txt
+          
+      - name: execute main_cycle
+        env: 
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          HOPSWORKS_PROJECT_NAME: ${{ secrets.HOPSWORKS_PROJECT_NAME }}
+        run: python ./taxi_working_directory/main_cycle.py
